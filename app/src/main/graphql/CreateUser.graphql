@@ -1,0 +1,5 @@
+mutation createUser($username:String!){
+    createUser(data: {name: $username}){
+        id,name
+    }
+}

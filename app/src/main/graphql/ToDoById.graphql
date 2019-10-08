@@ -1,0 +1,6 @@
+query getToDoById($id:ID){
+    todo(where: {id: $id}){
+        title,
+        description
+    }
+}

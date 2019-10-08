@@ -1,0 +1,13 @@
+query getToDosById($id:ID)
+{
+    user(where : {id : $id}){
+        todos{
+            id,
+            title,
+            description,
+            isCompleted
+        }
+    }
+
+
+}

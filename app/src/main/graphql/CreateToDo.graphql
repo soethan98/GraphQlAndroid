@@ -1,0 +1,23 @@
+mutation uploadToDo($id:ID,$title:String!,$description:String!) {
+    updateUser(where : { id : $id} ,
+        data : {todos : {
+            create: [
+                {
+                    title : $title,
+                    description : $description,
+                    isCompleted : false
+                }
+            ]
+        }}
+    ){
+        id,
+        todos{
+            id,
+            description,
+            title,
+            isCompleted
+
+        }
+
+    }
+}

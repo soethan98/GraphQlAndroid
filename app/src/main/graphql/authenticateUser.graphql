@@ -1,0 +1,8 @@
+query checkUser($name:String!)
+{
+    users(where : {name : $name},first : 1 ){
+        name,
+        id
+    }
+
+}
