@@ -9,7 +9,8 @@ import com.soethan.apolloandroid.delegate.ToDoClick
 import kotlinx.android.synthetic.main.main_content.view.*
 
 class ToDoAdapter(
-
+    // TODO : It is okay to use data model (Auto generated from GraphQL) for demo project
+    // TODO : BUT, take care of it on Product. Map to a Domain Specific Model everytime, don't use network model in UI
     private val todosList: List<GetToDosByIdQuery.Todo>,
     private val todoDelegate: ToDoClick
 ) :

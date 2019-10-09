@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         loginViewModel.checkUserList().observe(this, Observer { it ->
-
+            //TODO : Really good handling login and create new user
             if (it.isNotEmpty()) {
                 startActivity<MainActivity>(
                     "username" to it[0].name(),

@@ -58,6 +58,8 @@ class CreateToDo : DialogFragment() {
 
         addCompletion = activity as AddCompletion
 
+        // TODO : "id!!" is dangerous.
+        // TODO : Avoid "!!" whenever possible
         viewModelFactory = InjectorUtils.provideCreateFragmentFactory(id!!)
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(CreateFragViewModel::class.java)

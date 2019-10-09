@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
         setContentView(R.layout.activity_main)
 
 
-
+        //TODO : Non-null cast to extra is a bit dangerous, Username and id should be constant
         name = intent.extras!!.getString("username")
         userId = intent.extras!!.getString("id")
 
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
 
 
     private fun setUpRecyclerView(todoList: List<GetToDosByIdQuery.Todo>) {
-
+        // TODO : todos global variable is unnecessary, avoid using global variable whenever possible
         todos = todoList
 
 
@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
             setHasFixedSize(true)
             layoutManager =
                 LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            // TODO : Delegate can be replaced with Kotlin higher order functions
             todoAdapter = ToDoAdapter(todos!!, this@MainActivity)
             todoAdapter.notifyDataSetChanged()
 
@@ -114,6 +115,10 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
 
         mainViewModel.getToDosList().observe(this, Observer {
             mainProgress.visibility = View.GONE
+
+            // TODO : Don't need to setup recyclerview evey time data is changed.
+            // TODO : 1. Setup recyclerview on creation of activity
+            // TODO : 2. Update only to adapter on data is changed
             setUpRecyclerView(it)
         })
 

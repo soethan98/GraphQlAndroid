@@ -45,7 +45,10 @@ class ToDoRepository {
 
     }
 
-
+    // TODO: Live data subscription and data fetching should be different method, or the full power of Observer pattern will not be using
+    // TODO : 1. Observe a live data from a method
+    // TODO : 2. Fetch data from somewhere else, may be just after observing, or after refresh is clicked, or onResume activity
+    // TODO : cont'd : We can just create one live data and emit to the same live data whenever data is changed
     fun getToDosByUserId(userID: String): LiveData<List<GetToDosByIdQuery.Todo>> {
         graphqlClient.query(
             GetToDosByIdQuery
