@@ -10,40 +10,28 @@ import com.soethan.apolloandroid.R
 import com.soethan.apolloandroid.ToDoAdapter
 import com.soethan.apolloandroid.delegate.AddCompletion
 import com.soethan.apolloandroid.delegate.ToDoClick
-import com.soethan.apolloandroid.fragment.CreateToDo
 import com.soethan.apolloandroid.utils.InjectorUtils
-import com.soethan.apolloandroid.viewmodel.MainViewModel
-import com.soethan.apolloandroid.viewmodelfactory.MainViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
 
 
-    private lateinit var mainViewModel: MainViewModel
-    private lateinit var mainViewModelFactory: MainViewModelFactory
 
 
     override fun onDeleteClick(todoId: String) {
 
-        mainViewModel.deleteToDoList(todoId).observe(this, Observer {
-            requestToDoList()
-        })
 
 
     }
 
     override fun onToDoClick(todoId: String) {
 
-        val ft = supportFragmentManager
-        val dialogFragment = CreateToDo.newInstance(userId!!, todoId)
-        dialogFragment.show(ft, "dialog")
 
     }
 
     override fun onAddComplete(boolean: Boolean) {
 
 
-        if (boolean) requestToDoList()
 
     }
 
@@ -69,21 +57,9 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
 
 
 
-        mainViewModelFactory = InjectorUtils.provideMainViewModel(userId!!)
-        mainViewModel =
-            ViewModelProviders.of(this, mainViewModelFactory).get(MainViewModel::class.java)
 
 
 
-        requestToDoList()
-
-
-        createToDo.setOnClickListener {
-            val ft = supportFragmentManager
-            val dialogFragment = CreateToDo.newInstance(userId!!)
-            dialogFragment.show(ft, "dialog")
-
-        }
 
 
     }
@@ -110,15 +86,6 @@ class MainActivity : AppCompatActivity(), AddCompletion, ToDoClick {
     }
 
 
-    private fun requestToDoList() {
-
-        mainViewModel.getToDosList().observe(this, Observer {
-            mainProgress.visibility = View.GONE
-            setUpRecyclerView(it)
-        })
-
-
-    }
 
 
 }
